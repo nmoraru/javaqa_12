@@ -1,11 +1,12 @@
-package ru.netology.manager;
+package java.ru.netology.manager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Book;
-import ru.netology.domain.Product;
-import ru.netology.domain.Smartphone;
-import ru.netology.repository.ProductRepository;
+import java.ru.netology.domain.Book;
+import java.ru.netology.domain.Product;
+import java.ru.netology.domain.Smartphone;
+import java.ru.netology.manager.ProductManager;
+import java.ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 

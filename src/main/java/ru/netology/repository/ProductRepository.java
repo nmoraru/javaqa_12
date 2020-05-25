@@ -1,6 +1,6 @@
-package ru.netology.repository;
+package java.ru.netology.repository;
 
-import ru.netology.domain.Product;
+import java.ru.netology.domain.Product;
 
 public class ProductRepository {
 

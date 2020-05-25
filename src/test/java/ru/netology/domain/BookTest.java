@@ -1,9 +1,10 @@
-package ru.netology.domain;
+package java.ru.netology.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.manager.ProductManager;
-import ru.netology.repository.ProductRepository;
+import java.ru.netology.domain.Book;
+import java.ru.netology.manager.ProductManager;
+import java.ru.netology.repository.ProductRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 

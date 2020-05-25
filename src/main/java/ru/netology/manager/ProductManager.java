@@ -1,7 +1,7 @@
-package ru.netology.manager;
+package java.ru.netology.manager;
 
-import ru.netology.domain.Product;
-import ru.netology.repository.ProductRepository;
+import java.ru.netology.domain.Product;
+import java.ru.netology.repository.ProductRepository;
 
 
 public class ProductManager {
