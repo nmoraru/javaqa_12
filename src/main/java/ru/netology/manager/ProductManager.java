@@ -19,8 +19,7 @@ public class ProductManager {
     }
 
     public Product[] getFilms() {
-        Product[] productsFromRepo = repository.findAll();
-        return productsFromRepo;
+        return repository.findAll();
     }
 
     public Product[] searchBy(String text) {
