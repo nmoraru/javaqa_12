@@ -1,5 +1,6 @@
 package ru.netology.manager;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
@@ -12,41 +13,69 @@ class ProductManagerTest {
     ProductRepository repository = new ProductRepository();
     ProductManager manager = new ProductManager(repository);
 
-    Book book_1 = new Book(1, "Чистый код", 550, "Роберт Мартин");
-    Book book_2 = new Book(2, "Философия Java", 1500, "Эккель Брюс");
-    Smartphone smartphone_1 = new Smartphone(3, "iPhone 5S", 15000, "Apple");
-    Smartphone smartphone_2 = new Smartphone(4, "Galaxy S10E", 35000, "Samsung");
+    Book book1 = new Book(1, "Чистый код", 550, "Роберт Мартин");
+    Book book2 = new Book(2, "Философия Java", 1500, "Эккель Брюс");
+    Smartphone smartphone1 = new Smartphone(3, "iPhone 5S", 15000, "Apple");
+    Smartphone smartphone2 = new Smartphone(4, "Galaxy S10E", 35000, "Samsung");
+
+    @BeforeEach
+    void init() {
+        manager.add(book1);
+        manager.add(book2);
+        manager.add(smartphone1);
+        manager.add(smartphone2);
+    }
 
     @Test
-    void shouldSearchByBook() {
-        manager.add(book_1);
-        manager.add(book_2);
-        manager.add(smartphone_1);
-        manager.add(smartphone_2);
+    void shouldSearchByNameBook() {
+        Product[] expected = new Product[]{book1};
+        assertArrayEquals(expected, manager.searchBy("Чистый код"));
+    }
 
-        Product[] expected1 = new Product[]{book_1};
-        Product[] expected2 = new Product[]{book_2};
+    @Test
+    void shouldSearchByAuthorBook() {
+        Product[] expected = new Product[]{book2};
+        assertArrayEquals(expected, manager.searchBy("Эккель Брюс"));
+    }
 
-        assertArrayEquals(expected1, manager.searchBy("Чистый код"));
-        assertArrayEquals(expected2, manager.searchBy("Эккель Брюс"));
+    @Test
+    void shouldSearchBySmartphoneName() {
+        Product[] expected = new Product[]{smartphone2};
+        assertArrayEquals(expected, manager.searchBy("Galaxy S10E"));
 
     }
 
     @Test
-    void shouldSearchBySmartphone() {
-        manager.add(book_1);
-        manager.add(book_2);
-        manager.add(smartphone_1);
-        manager.add(smartphone_2);
-
-        Product[] expected1 = new Product[]{smartphone_1};
-        Product[] expected2 = new Product[]{smartphone_2};
-
-        assertArrayEquals(expected1, manager.searchBy("Apple"));
-        assertArrayEquals(expected2, manager.searchBy("Galaxy S10E"));
-
+    void shouldSearchBySmartphoneManufacturer() {
+        Product[] expected = new Product[]{smartphone1};
+        assertArrayEquals(expected, manager.searchBy("Apple"));
     }
 
+    /*
+    * negative tests
+    * */
 
+    @Test
+    void shouldSearchBySmartphoneManufacturerIncorrect() {
+        Product[] expected = {};
+        assertArrayEquals(expected, manager.searchBy("ZTE"));
+    }
 
+    @Test
+    void shouldSearchBySmartphoneNameIncorrect() {
+        Product[] expected = {};
+        assertArrayEquals(expected, manager.searchBy("3310"));
+    }
+
+    @Test
+    void shouldSearchByNameBookIncorrect() {
+        Product[] expected = {};
+        assertArrayEquals(expected, manager.searchBy("Золотой ключик"));
+    }
+
+    @Test
+    void shouldSearchByAuthorBookIncorrect() {
+        Product[] expected =  {};
+        assertArrayEquals(expected, manager.searchBy("Лев Толстой"));
+    }
 }
